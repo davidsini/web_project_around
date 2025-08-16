@@ -1,0 +1,14 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 17px;
+  row-gap: 21px;
+}
+
+.gallery__card {
+  max-width: 282px;
+  height: 361px;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Around the U.S.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Dēivid Sans" />
+    <meta
+      name="description"
+      content="A social webpage to explore the beauty of the U.S." />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/index.css" />
+  </head>
+
+  <body class="page">
+    <div class="popup">
+      <div class="popup__main">
+        <img
+          src="./images/close-icon.svg"
+          alt="botón 'cerrar'"
+          class="popup__close-button" />
+        <div class="popup__form-container form">
+          <h3 class="form__description">Editar perfil</h3>
+          <form class="form__mc">
+            <input
+              type="text"
+              placeholder="Nombre"
+              required
+              class="form__input form__input--name" />
+            <input
+              type="text"
+              placeholder="Acerca de mí"
+              required
+              class="form__input" />
+          </form>
+          <button class="form__save-button">Guardar</button>
+        </div>
+      </div>
+      <div class="popup__background"></div>
+    </div>
+
+    <div class="header">
+      <img
+        src="./images/logo.svg"
+        alt="logo con inscripción 'around the U.S.'"
+        class="header__logo" />
+      <hr class="header__line" />
+    </div>
+
+    <main class="page__main-container">
+      <section class="profile">
+        <div class="profile__main-container">
+          <div class="profile__data">
+            <img
+              class="profile__picture"
+              src="./images/avatar.png"
+              alt="Imagen de
+        perfil del usuario" />
+            <div class="profile__info-w-button">
+              <div class="profile__info">
+                <h1 class="profile__name">Jacques Cousteau</h1>
+                <img
+                  src="./images/edit-button.svg"
+                  class="profile__edit-button"
+                  alt="botón de edición" />
+              </div>
+              <p class="profile__occupation">Explorador</p>
+            </div>
+          </div>
+          <img
+            src="./images/add-button.svg"
+            class="profile__add-button"
+            alt="botón de adición de perfil" />
+        </div>
+      </section>
+
+      <section class="gallery">
+        <div class="gallery__card" id="the-grotto">
+          <img
+            src="./images/janek-valdsalu-UpNwL3hTcRg-unsplash.jpg"
+            class="card__image"
+            alt="Imagen del bosque The Grotto" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">The Grotto</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+
+        <div class="gallery__card" id="hoh-rain-forest">
+          <img
+            src="./images/nikita-pishchugin-KDQ1BH-I3q4-unsplash.jpg"
+            class="card__image"
+            alt="Imagen del bosque Hoh Rain Forest" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">Hoh Rain Forest</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+
+        <div class="gallery__card" id="grand-canyon">
+          <img
+            src="./images/nir-himi-NVg0YlDyj4w-unsplash-copy-0.jpg"
+            class="card__image"
+            alt="Imagen del Gran Cañón" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">The Grand Canyon</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+
+        <div class="gallery__card" id="porcupine-mountains">
+          <img
+            src="./images/samuel-ferrara-iecJiKe_RNg-unsplash.jpg"
+            class="card__image"
+            alt="Imagen de las montañas Porcupine" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">Porcupine Mountains</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+
+        <div class="gallery__card" id="driftwood-beach">
+          <img
+            src="./images/zach-kessinger-9lISGnROB-Y-unsplash.jpg"
+            class="card__image"
+            alt="Imagen de Driftwood Beach" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">Driftwood Beach</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+
+        <div class="gallery__card" id="trees-of-mystery">
+          <img
+            src="./images/ingmar-NsDMLJ6wNV4-unsplash(2).jpg"
+            class="card__image"
+            alt="Imagen de Driftwood Beach" />
+          <div class="card__info">
+            <div class="card__info-container">
+              <h2 class="card__title">Trees of Mystery</h2>
+              <img
+                src="./images/heart.svg"
+                class="card__like-button"
+                alt="Botón 'me gusta'" />
+            </div>
+            <div class="card__rec"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer page__main-container">
+      <p class="footer__text">&copy; 2025 Around The U.S.</p>
+    </footer>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
