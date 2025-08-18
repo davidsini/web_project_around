@@ -49,3 +49,18 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 880px) {
+  .popup__container,
+  .popup__opened,
+  .popup__form-container {
+    max-width: 282px;
+  }
+
+  .popup__close-button {
+    top: -39px;
+    right: 0;
+    max-width: 26px;
+    align-self: self-end;
+  }
+}

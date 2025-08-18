@@ -20,7 +20,7 @@ html {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
   .page__main-container {
     max-width: 95%;
   }

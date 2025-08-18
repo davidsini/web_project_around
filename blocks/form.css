@@ -33,3 +33,13 @@
   background-color: #313131;
   border: none;
 }
+
+@media screen and (max-width: 880px) {
+  .form__description {
+    font-size: 18px;
+  }
+
+  .form__input {
+    font-size: 14px;
+  }
+}

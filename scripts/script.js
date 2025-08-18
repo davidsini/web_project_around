@@ -1,9 +1,9 @@
-let editButton = document.querySelector(".profile__edit-button");
-let popupSection = document.querySelector(".popup");
-let popupCloseButton = document.querySelector(".popup__close-button");
-let popupSaveButton = document.querySelector(".form__save-button");
-let userInput = document.querySelectorAll(".form__input");
-let closeButton = document.querySelector(".popup__close-button");
+const editButton = document.querySelector(".profile__edit-button");
+const popupSection = document.querySelector(".popup");
+const popupCloseButton = document.querySelector(".popup__close-button");
+const popupSaveButton = document.querySelector(".form__save-button");
+const userInput = document.querySelectorAll(".form__input");
+const closeButton = document.querySelector(".popup__close-button");
 
 function setName() {
   let profileName = document.querySelector(".profile__name").textContent;
@@ -14,7 +14,7 @@ function setName() {
 }
 
 function openPopup() {
-  popupSection.classList.toggle("opened");
+  popupSection.classList.toggle("popup__opened");
   popupSection.classList.toggle("popup");
 }
 
