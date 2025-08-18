@@ -12,3 +12,21 @@
   border-radius: 20px;
   position: relative;
 }
+
+@media screen and (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .gallery__card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

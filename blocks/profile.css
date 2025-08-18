@@ -37,7 +37,6 @@
 .profile__name {
   font-weight: 500;
   font-size: 42px;
-  line-height: 48px;
 }
 
 .profile__occupation {
@@ -63,4 +62,67 @@
 
 .profile__add-button {
   max-width: 150px;
+}
+
+.profile__add-button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .profile,
+  .profile__main-container,
+  .profile__data,
+  .profile__info-w-button {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .profile__main-container {
+    gap: 36px;
+  }
+
+  .profile__name {
+    font-size: 32px;
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    overflow: hidden;
+  }
+
+  .profile__occupation {
+    font-size: 18px;
+  }
+
+  .profile__info {
+    justify-content: space-around;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile,
+  .profile__main-container,
+  .profile__data,
+  .profile__info-w-button {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .profile__main-container {
+    gap: 36px;
+  }
+
+  .profile__name {
+    font-size: 22px;
+    max-width: 196px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .profile__occupation {
+    font-size: 14px;
+  }
 }

@@ -15,11 +15,11 @@
   display: none;
 }
 
-.popup__visible {
+.popup__opened {
   display: block;
 }
 
-.popup__main {
+.popup__container {
   position: fixed;
   top: 50%;
   left: 50%;
