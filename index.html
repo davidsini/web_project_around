@@ -43,6 +43,36 @@
       <div class="popup__background"></div>
     </div>
 
+    <div class="popUpCard">
+      <div class="popUpCard__container">
+        <img
+          src="./images/close-icon.svg"
+          alt="botón 'cerrar'"
+          class="popUpCard__close-button" />
+        <div class="popup__form-container form">
+          <h3 class="form__description">Nuevo lugar</h3>
+          <form class="popUpCard__form">
+            <input
+              type="text"
+              placeholder="Título"
+              required
+              class="form__input"
+              id="place-input" />
+            <input
+              type="text"
+              placeholder="Enlace a la imagen"
+              required
+              class="form__input"
+              id="link-input" />
+          </form>
+          <button class="form__save-button" id="card-save-button">
+            Guardar
+          </button>
+        </div>
+      </div>
+      <div class="popUpCard__background"></div>
+    </div>
+
     <div class="header">
       <img
         src="./images/logo.svg"
@@ -78,109 +108,35 @@
         </div>
       </section>
 
-      <section class="gallery">
-        <div class="gallery__card" id="the-grotto">
-          <img
-            src="./images/janek-valdsalu-UpNwL3hTcRg-unsplash.webp"
-            class="gallery__card-image"
-            alt="Imagen del bosque The Grotto" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">The Grotto</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
-          </div>
-        </div>
+      <section class="gallery"></section>
 
-        <div class="gallery__card" id="hoh-rain-forest">
-          <img
-            src="./images/nikita-pishchugin-KDQ1BH-I3q4-unsplash.webp"
-            class="gallery__card-image"
-            alt="Imagen del bosque Hoh Rain Forest" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">Hoh Rain Forest</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
-          </div>
-        </div>
-
-        <div class="gallery__card" id="grand-canyon">
-          <img
-            src="./images/nir-himi-NVg0YlDyj4w-unsplash-copy-0.webp"
-            class="gallery__card-image"
-            alt="Imagen del Gran Cañón" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">The Grand Canyon</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
-          </div>
-        </div>
-
-        <div class="gallery__card" id="porcupine-mountains">
-          <img
-            src="./images/federico-bottos-Z3NceSeZqgI-unsplash.webp"
-            class="gallery__card-image"
-            alt="Imagen de las montañas Porcupine" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">Porcupine Mountains</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
-          </div>
-        </div>
-
-        <div class="gallery__card" id="driftwood-beach">
-          <img
-            src="./images/zach-kessinger-9lISGnROB-Y-unsplash.webp"
-            class="gallery__card-image"
-            alt="Imagen de Driftwood Beach" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">Driftwood Beach</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
-          </div>
-        </div>
-
-        <div class="gallery__card" id="trees-of-mystery">
-          <img
-            src="./images/spencer-plouzek-GwEQzamy4MA-unsplash.webp"
-            class="gallery__card-image"
-            alt="Imagen de Driftwood Beach" />
-          <div class="gallery__card-info">
-            <div class="gallery__card-info-container">
-              <h2 class="gallery__card-title">Trees of Mystery</h2>
-              <img
-                src="./images/heart.svg"
-                class="gallery__card-like-button"
-                alt="Botón 'me gusta'" />
-            </div>
-            <div class="gallery__card-rec"></div>
+      <section class="imagePopUp imagePopUp--closed">
+        <div class="imagePopUp imagePopUp__container">
+          <img src="" alt="" class="imagePopUp__image" />
+          <p class="imagePopUp__title"></p>
+          <div class="imagePopUp__second-container">
+            <button class="imagePopUp__close-button" type="button"></button>
           </div>
         </div>
       </section>
+
+      <template id="card-template">
+        <li class="gallery__card">
+          <img
+            src="./images/Trash.svg"
+            alt="botón de eliminación"
+            class="gallery__trash-button"
+            id="trash-button" />
+          <img class="gallery__card-image" src="#" alt="" />
+          <div class="gallery__card-info">
+            <div class="gallery__card-info-container">
+              <h2 class="gallery__card-title"></h2>
+              <button class="gallery__card-like-button" type="button"></button>
+            </div>
+            <div class="gallery__card-rec"></div>
+          </div>
+        </li>
+      </template>
     </main>
 
     <footer class="footer page__main-container">
