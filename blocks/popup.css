@@ -41,20 +41,22 @@
 
 .popup__form-container {
   width: 430px;
-  height: 330px;
   border-radius: 10px;
   padding: 30px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 40px 30px;
+  gap: 30px;
 }
 
 @media screen and (max-width: 880px) {
-  .popup__container,
   .popup__opened,
-  .popup__form-container {
-    max-width: 282px;
+  .popup__form-container,
+  .popup__container {
+    max-width: 70vw;
+    box-sizing: border-box;
   }
 
   .popup__close-button {

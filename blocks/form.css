@@ -20,6 +20,17 @@
   color: rgba(196, 196, 196, 0.7);
 }
 
+.form__input_type_error {
+  border-style: none;
+  height: 27.26px;
+  border-bottom: 2px solid rgba(255, 0, 0, 1);
+}
+
+.form__input-error_active {
+  opacity: 1;
+  color: rgba(255, 0, 0, 1);
+}
+
 .form__save-button {
   height: 50px;
   background-color: black;
@@ -34,12 +45,34 @@
   border: none;
 }
 
+.form__save-button_inactive {
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  color: #cccccc;
+}
+
 @media screen and (max-width: 880px) {
   .form__description {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .form__input {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .form__description {
+    font-size: 18px;
+  }
+  .form__save-button {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .form__mc {
+    gap: 10px;
   }
 }

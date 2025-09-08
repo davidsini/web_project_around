@@ -17,33 +17,43 @@
   </head>
 
   <body class="page">
-    <div class="popup">
+    <dialog class="popup">
       <div class="popup__container">
         <img
           src="./images/close-icon.svg"
           alt="botón 'cerrar'"
           class="popup__close-button" />
-        <div class="popup__form-container form">
+        <div class="popup__form-container">
           <h3 class="form__description">Editar perfil</h3>
-          <form class="form__mc">
+          <form class="form__mc form">
             <input
               type="text"
               placeholder="Nombre"
               required
-              class="form__input" />
+              class="form__input"
+              minlength="2"
+              maxlength="40"
+              id="name__input" />
+            <span class="name__input-error"></span>
+
             <input
               type="text"
               placeholder="Acerca de mí"
               required
-              class="form__input" />
+              class="form__input"
+              minlength="2"
+              maxlength="200"
+              id="about__input" />
+            <span class="about__input-error"></span>
+
+            <button class="form__save-button" type="submit">Guardar</button>
           </form>
-          <button class="form__save-button">Guardar</button>
         </div>
       </div>
       <div class="popup__background"></div>
-    </div>
+    </dialog>
 
-    <div class="popUpCard">
+    <dialog class="popUpCard">
       <div class="popUpCard__container">
         <img
           src="./images/close-icon.svg"
@@ -51,35 +61,41 @@
           class="popUpCard__close-button" />
         <div class="popup__form-container form">
           <h3 class="form__description">Nuevo lugar</h3>
-          <form class="popUpCard__form">
+          <form class="popUpCard__form form">
             <input
               type="text"
               placeholder="Título"
               required
               class="form__input"
+              minlength="2"
+              maxlength="30"
               id="place-input" />
+            <span class="place-input-error"></span>
+
             <input
-              type="text"
+              type="url"
               placeholder="Enlace a la imagen"
               required
               class="form__input"
               id="link-input" />
+            <span class="link-input-error"></span>
+
+            <button class="form__save-button" id="card-save-button">
+              Guardar
+            </button>
           </form>
-          <button class="form__save-button" id="card-save-button">
-            Guardar
-          </button>
         </div>
       </div>
       <div class="popUpCard__background"></div>
-    </div>
+    </dialog>
 
-    <div class="header">
+    <header class="header">
       <img
         src="./images/logo.svg"
         alt="logo con inscripción 'around the U.S.'"
         class="header__logo" />
       <hr class="header__line" />
-    </div>
+    </header>
 
     <main class="page__main-container">
       <section class="profile">
@@ -115,7 +131,10 @@
           <img src="" alt="" class="imagePopUp__image" />
           <p class="imagePopUp__title"></p>
           <div class="imagePopUp__second-container">
-            <button class="imagePopUp__close-button" type="button"></button>
+            <button
+              class="imagePopUp__close-button"
+              type="button"
+              id="card-save-button"></button>
           </div>
         </div>
       </section>
@@ -144,5 +163,6 @@
     </footer>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

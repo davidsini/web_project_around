@@ -61,7 +61,7 @@
   .popUpCard__container,
   .popUpCard__opened,
   .popUpCard__form-container {
-    max-width: 282px;
+    max-width: 70vw;
   }
 
   .popUpCard__close-button {
@@ -69,5 +69,15 @@
     right: 0;
     max-width: 26px;
     align-self: self-end;
+  }
+
+  .popUpCard__form {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popUpCard__form {
+    gap: 16px;
   }
 }
