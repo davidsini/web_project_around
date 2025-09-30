@@ -1,6 +1,7 @@
 // Profe: los comentarios en cada sección los agregué yo para entender mejor mi código, por favor no los borre
 
 // Importar de los otros archivos
+import { openPopup, closePopup } from "./utils.js";
 import Card from "./card.js";
 import FormValidator from "./formValidator.js";
 
@@ -15,8 +16,8 @@ const validationSettings = {
 };
 
 // Elementos de formularios
-const editProfileForm = document.querySelector(".popup .form");
-const addCardForm = document.querySelector(".popUpCard .form");
+const editProfileForm = popupSection.querySelector(".form");
+const addCardForm = popUpCardSection.querySelector(".form");
 
 // Nueva instancia para el form del profile
 const editFormValidator = new FormValidator(
@@ -78,16 +79,6 @@ const initialCards = [
 ];
 
 // Funciones
-
-// -- Función para abrir pop-up
-function openPopup(popupElement) {
-  popupElement.classList.add("popup__opened");
-}
-
-// -- Función para cerrar pop-up
-function closePopup(popupElement) {
-  popupElement.classList.remove("popup__opened");
-}
 
 // -- Lógica para el formulario de perfil
 function setName() {
