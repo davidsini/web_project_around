@@ -1,5 +1,35 @@
-// Profe: los comentarios en cada sección los agregué yo para entender mejor mi código, por favor no piense que usé IA o algo para hacerlo hahsdf
+// Profe: los comentarios en cada sección los agregué yo para entender mejor mi código, por favor no los borre
 
+// Importar de los otros archivos
+import Card from "./card.js";
+import FormValidator from "./formValidator.js";
+
+// Objeto settings para formValidator
+const validationSettings = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
+  inactiveButtonClass: "form__save-button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
+
+// Elementos de formularios
+const editProfileForm = document.querySelector(".popup .form");
+const addCardForm = document.querySelector(".popUpCard .form");
+
+// Nueva instancia para el form del profile
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editProfileForm
+);
+editFormValidator.enableValidation();
+
+// Nueva instancia para el form de la tarjeta
+const addFormValidator = new FormValidator(validationSettings, addCardForm);
+addFormValidator.enableValidation();
+
+// ----------   Código antiguo ------------------
 const editButton = document.querySelector(".profile__edit-button");
 const popupSection = document.querySelector(".popup");
 const popupCloseButton = document.querySelector(".popup__close-button");

@@ -67,3 +67,5 @@ class Card {
     imagePopUpSection.classList.toggle("imagePopUp--closed");
   }
 }
+
+export default Card;
