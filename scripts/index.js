@@ -1,5 +1,3 @@
-// Profe: los comentarios en cada sección los agregué yo para entender mejor mi código, por favor no los borre
-
 // Importar de los otros archivos
 import { openPopup, closePopup } from "./utils.js";
 import Card from "./card.js";
@@ -30,7 +28,7 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
 
-// ----------   Código antiguo ------------------
+// ---------------------------------------------------------------
 const editButton = document.querySelector(".profile__edit-button");
 const popupSection = document.querySelector(".popup");
 const popupCloseButton = document.querySelector(".popup__close-button");
