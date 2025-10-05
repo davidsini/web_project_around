@@ -13,21 +13,8 @@ const validationSettings = {
   errorClass: "form__input-error_active",
 };
 
-// Elementos de formularios
-const editProfileForm = popupSection.querySelector(".form");
-const addCardForm = popUpCardSection.querySelector(".form");
-
-// Nueva instancia para el form del profile
-const editFormValidator = new FormValidator(
-  validationSettings,
-  editProfileForm
-);
-editFormValidator.enableValidation();
-
-// Nueva instancia para el form de la tarjeta
-const addFormValidator = new FormValidator(validationSettings, addCardForm);
-addFormValidator.enableValidation();
-
+// ---------------------------------------------------------------
+//  DEFINIR CONSTANTES
 // ---------------------------------------------------------------
 const editButton = document.querySelector(".profile__edit-button");
 const popupSection = document.querySelector(".popup");
@@ -47,6 +34,29 @@ const imagePopUpSection = document.querySelector(".imagePopUp");
 const imagePopUpCloseButton = document.querySelector(
   ".imagePopUp__close-button"
 );
+
+// Now define the form variables using the constants from above
+const editProfileForm = popupSection.querySelector(".form");
+const addCardForm = popUpCardSection.querySelector(".form");
+
+// ---------------------------------------------------------------
+//  HACER QUE ESAS CONSTANTES HAGAN ALGO
+// ---------------------------------------------------------------
+
+// Nueva instancia para el form del profile
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editProfileForm
+);
+editFormValidator.enableValidation();
+
+// Nueva instancia para el form de la tarjeta
+const addFormValidator = new FormValidator(validationSettings, addCardForm);
+addFormValidator.enableValidation();
+
+// ---------------------------------------------------------------
+//  INFO Y FUNCIONES
+// ---------------------------------------------------------------
 
 // Datos de las tarjetas
 const initialCards = [
@@ -75,8 +85,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
   },
 ];
-
-// Funciones
 
 // -- Lógica para el formulario de perfil
 function setName() {
@@ -124,7 +132,9 @@ function handleAddCardSubmit(evt) {
   closePopup(popUpCardSection);
 }
 
-// Event Listeners
+// ---------------------------------------------------------------
+//  EVENT LISTENERS
+// ---------------------------------------------------------------
 
 // -- Perfil
 editButton.addEventListener("click", () => {
