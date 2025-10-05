@@ -13,6 +13,10 @@ const validationSettings = {
   errorClass: "form__input-error_active",
 };
 
+// Elementos de formularios
+const editProfileForm = popupSection.querySelector(".form");
+const addCardForm = popUpCardSection.querySelector(".form");
+
 // Nueva instancia para el form del profile
 const editFormValidator = new FormValidator(
   validationSettings,
@@ -43,10 +47,6 @@ const imagePopUpSection = document.querySelector(".imagePopUp");
 const imagePopUpCloseButton = document.querySelector(
   ".imagePopUp__close-button"
 );
-
-// Elementos de formularios
-const editProfileForm = popupSection.querySelector(".form");
-const addCardForm = popUpCardSection.querySelector(".form");
 
 // Datos de las tarjetas
 const initialCards = [
