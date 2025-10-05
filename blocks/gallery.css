@@ -27,26 +27,18 @@
 .gallery__card-info {
   position: absolute;
   bottom: 0px;
-  z-index: 2;
   width: 100%;
-  background-color: white; /* This was added */
-}
-
-.gallery__card-info-container {
+  background-color: white;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 25px 15px 31px 21px;
-  /* `position` and `bottom` were removed from here */
-  width: 100%;
-  max-height: 100%;
+  box-sizing: border-box;
 }
 
 .gallery__card-title {
   font-weight: 900;
   font-size: 24px;
-  z-index: 3;
   color: black;
   max-width: 80%;
   overflow: hidden;
@@ -63,6 +55,7 @@
   outline: none;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .gallery__card-like-button:hover {
@@ -70,13 +63,7 @@
 }
 
 .gallery__card-like-button--clicked {
-  width: 24px;
-  height: 24px;
   background: url("../images/dark-heart.svg") no-repeat center center;
-  background-size: contain;
-  border: none;
-  outline: none;
-  padding: 0;
 }
 
 .gallery__trash-button {
