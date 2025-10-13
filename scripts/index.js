@@ -35,7 +35,6 @@ const imagePopUpCloseButton = document.querySelector(
   ".imagePopUp__close-button"
 );
 
-// Now define the form variables using the constants from above
 const editProfileForm = popupSection.querySelector(".form");
 const addCardForm = popUpCardSection.querySelector(".form");
 
