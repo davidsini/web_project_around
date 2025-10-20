@@ -19,23 +19,9 @@ const validationSettings = {
 // ---------------------------------------------------------------
 const editButton = document.querySelector(".profile__edit-button");
 const popupSection = document.querySelector(".popup");
-const popupCloseButton = document.querySelector(".popup__close-button");
-const popupSaveButton = document.querySelector(".form__save-button");
 const userInput = document.querySelectorAll(".form__input");
-
 const cardAddButton = document.querySelector(".profile__add-button");
 const popUpCardSection = document.querySelector(".popUpCard");
-const popUpCardCloseButton = document.querySelector(".popUpCard__close-button");
-const popUpCardSaveButton = document.querySelector("#card-save-button");
-const titleInput = document.querySelector("#place-input");
-const linkInput = document.querySelector("#link-input");
-
-const cardsContainer = document.querySelector(".gallery");
-const imagePopUpSection = document.querySelector(".imagePopUp");
-const imagePopUpCloseButton = document.querySelector(
-  ".imagePopUp__close-button"
-);
-
 const editProfileForm = popupSection.querySelector(".form");
 const addCardForm = popUpCardSection.querySelector(".form");
 
