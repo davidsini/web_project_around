@@ -1,4 +1,3 @@
-import { openPopup, closePopup } from "./utils.js";
 import Card from "./Card.js";
 import FormValidator from "./formValidator.js";
 import Popup from "./Popup.js";
@@ -87,52 +86,6 @@ const initialCards = [
   },
 ];
 
-// -- Lógica para el formulario de perfil
-// function setName() {
-//   let profileName = document.querySelector(".profile__name").textContent;
-//   let profOccup = document.querySelector(".profile__occupation").textContent;
-//   userInput[0].value = profileName;
-//   userInput[1].value = profOccup;
-// }
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  let profileName = document.querySelector(".profile__name");
-  let profOccup = document.querySelector(".profile__occupation");
-  profileName.textContent = userInput[0].value;
-  profOccup.textContent = userInput[1].value;
-  closePopup(popupSection);
-}
-
-// Crear Card, reutilizable
-function createCard(item) {
-  const card = new Card(item, "#card-template");
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-
-// -- Renderizado inicial
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardsContainer.append(cardElement);
-});
-
-// -- Añadir  nueva tarjeta
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-  const newCardData = {
-    name: titleInput.value,
-    link: linkInput.value,
-  };
-
-  const cardElement = createCard(newCardData);
-  cardsContainer.prepend(cardElement);
-
-  titleInput.value = "";
-  linkInput.value = "";
-  closePopup(popUpCardSection);
-}
-
 // ---------------------------------------------------------------
 //  EVENT LISTENERS
 // ---------------------------------------------------------------
@@ -147,23 +100,11 @@ editButton.addEventListener("click", () => {
   profileEditPopup.open();
 });
 
-popupCloseButton.addEventListener("click", () => closePopup(popupSection));
-popupSaveButton.addEventListener("click", handleProfileFormSubmit);
-
 // -- Añadir tarjeta
 // cardAddButton.addEventListener("click", () => openPopup(popUpCardSection));
 cardAddButton.addEventListener("click", () => {
   addCardPopup.open();
 });
-popUpCardCloseButton.addEventListener("click", () =>
-  closePopup(popUpCardSection)
-);
-popUpCardSaveButton.addEventListener("click", handleAddCardSubmit);
-
-// -- Cerrar pop-up de imagen
-imagePopUpCloseButton.addEventListener("click", () =>
-  closePopup(imagePopUpSection)
-);
 
 // ---------------------------------------------------------------
 // SPRINT 11
