@@ -1,8 +1,9 @@
-class Card {
-  constructor(data, cardSelector) {
+export default class Card {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -43,7 +44,7 @@ class Card {
       this._handleDeleteClick();
     });
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick();
+      this._handleCardClick();
     });
   }
 
@@ -54,18 +55,4 @@ class Card {
   _handleDeleteClick() {
     this._element.remove();
   }
-
-  _handleImageClick() {
-    const imagePopUpSection = document.querySelector(".imagePopUp");
-    const popupImage = imagePopUpSection.querySelector(".imagePopUp__image");
-    const imageTitle = imagePopUpSection.querySelector(".imagePopUp__title");
-
-    popupImage.src = this._link;
-    imageTitle.textContent = this._name;
-
-    imagePopUpSection.classList.toggle("imagePopUp--opened");
-    imagePopUpSection.classList.toggle("imagePopUp--closed");
-  }
 }
-
-export default Card;
