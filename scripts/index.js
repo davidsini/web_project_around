@@ -1,7 +1,9 @@
-// Importar de los otros archivos
 import { openPopup, closePopup } from "./utils.js";
 import Card from "./Card.js";
 import FormValidator from "./formValidator.js";
+import Popup from "./Popup.js";
+import PopupWithForm from "./PopUpWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 // Objeto settings para formValidator
 const validationSettings = {
@@ -86,12 +88,12 @@ const initialCards = [
 ];
 
 // -- Lógica para el formulario de perfil
-function setName() {
-  let profileName = document.querySelector(".profile__name").textContent;
-  let profOccup = document.querySelector(".profile__occupation").textContent;
-  userInput[0].value = profileName;
-  userInput[1].value = profOccup;
-}
+// function setName() {
+//   let profileName = document.querySelector(".profile__name").textContent;
+//   let profOccup = document.querySelector(".profile__occupation").textContent;
+//   userInput[0].value = profileName;
+//   userInput[1].value = profOccup;
+// }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -137,14 +139,22 @@ function handleAddCardSubmit(evt) {
 
 // -- Perfil
 editButton.addEventListener("click", () => {
-  setName();
-  openPopup(popupSection);
+  const currentUserInfo = userInfo.getUserInfo();
+
+  userInput[0].value = currentUserInfo.name;
+  userInput[1].value = currentUserInfo.occupation;
+
+  profileEditPopup.open();
 });
+
 popupCloseButton.addEventListener("click", () => closePopup(popupSection));
 popupSaveButton.addEventListener("click", handleProfileFormSubmit);
 
 // -- Añadir tarjeta
-cardAddButton.addEventListener("click", () => openPopup(popUpCardSection));
+// cardAddButton.addEventListener("click", () => openPopup(popUpCardSection));
+cardAddButton.addEventListener("click", () => {
+  addCardPopup.open();
+});
 popUpCardCloseButton.addEventListener("click", () =>
   closePopup(popUpCardSection)
 );
@@ -154,3 +164,50 @@ popUpCardSaveButton.addEventListener("click", handleAddCardSubmit);
 imagePopUpCloseButton.addEventListener("click", () =>
   closePopup(imagePopUpSection)
 );
+
+// ---------------------------------------------------------------
+// SPRINT 11
+// ---------------------------------------------------------------
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  occupationSelector: ".profile__occupation",
+});
+
+const profileEditPopup = new PopupWithForm(".popup", (formData) => {
+  userInfo.setUserInfo(formData);
+  profileEditPopup.close();
+});
+profileEditPopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm(".popUpCard", (formData) => {
+  const newCard = new Card(formData, "#card-template", (name, link) => {
+    imagePreviewPopup.open(name, link);
+  });
+  const newCardElement = newCard.generateCard();
+
+  cardListSection.addItem(newCardElement, true);
+  addCardPopup.close();
+});
+addCardPopup.setEventListeners();
+
+const imagePreviewPopup = new PopupWithImage(".imagePopUp");
+imagePreviewPopup.setEventListeners();
+
+const cardListSection = new Section(
+  {
+    items: initialCards,
+
+    renderer: (item) => {
+      const card = new Card(item, "#card-template", (name, link) => {
+        imagePreviewPopup.open(name, link);
+      });
+
+      const cardElement = card.generateCard();
+      return cardElement;
+    },
+  },
+  ".gallery"
+);
+
+cardListSection.renderItems();
