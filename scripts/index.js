@@ -1,6 +1,6 @@
 // Importar de los otros archivos
 import { openPopup, closePopup } from "./utils.js";
-import Card from "./card.js";
+import Card from "./Card.js";
 import FormValidator from "./formValidator.js";
 
 // Objeto settings para formValidator
