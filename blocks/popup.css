@@ -28,11 +28,18 @@
 }
 
 .popup__close-button {
+  background-image: url("../images/close-icon.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   position: absolute;
   top: -35px;
   right: -35px;
-  max-width: 45px;
+  width: 30px;
+  height: 30px;
   align-self: self-end;
+  border: none;
 }
 
 .popup__close-button:hover {

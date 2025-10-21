@@ -1,4 +1,4 @@
-.imagePopUp--opened {
+.imagePopUp.popup__opened {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
   z-index: 2;
 }
 
-.imagePopUp--closed {
+.imagePopUp {
   display: none;
 }
 
