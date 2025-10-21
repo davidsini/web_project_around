@@ -1,8 +1,10 @@
-import Card from "./Card.js";
 import FormValidator from "./formValidator.js";
 import Popup from "./Popup.js";
-import PopupWithForm from "./PopUpWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js";
+import Section from "./Section.js";
+import Card from "./card.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 // Objeto settings para formValidator
 const validationSettings = {
