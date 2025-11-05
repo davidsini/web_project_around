@@ -1,3 +1,4 @@
+import Api from "./Api.js";
 import FormValidator from "./formValidator.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
@@ -5,6 +6,19 @@ import UserInfo from "./UserInfo.js";
 import Section from "./Section.js";
 import Card from "./card.js";
 import PopupWithForm from "./PopupWithForm.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
+
+// ---------------------------------------------------------------
+//  SPRINT 12
+// ---------------------------------------------------------------
+
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "0727e918-236a-4454-ba88-94aa79b3a1d2",
+    "Content-Type": "application/json",
+  },
+});
 
 // Objeto settings para formValidator
 const validationSettings = {
@@ -26,6 +40,7 @@ const cardAddButton = document.querySelector(".profile__add-button");
 const popUpCardSection = document.querySelector(".popUpCard");
 const editProfileForm = popupSection.querySelector(".form");
 const addCardForm = popUpCardSection.querySelector(".form");
+const profileAvatar = document.querySelector(".profile__picture");
 
 // ---------------------------------------------------------------
 //  HACER QUE ESAS CONSTANTES HAGAN ALGO
@@ -43,38 +58,6 @@ const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
 
 // ---------------------------------------------------------------
-//  INFO Y FUNCIONES
-// ---------------------------------------------------------------
-
-// Datos de las tarjetas
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
-
-// ---------------------------------------------------------------
 //  EVENT LISTENERS
 // ---------------------------------------------------------------
 
@@ -89,13 +72,12 @@ editButton.addEventListener("click", () => {
 });
 
 // -- Añadir tarjeta
-// cardAddButton.addEventListener("click", () => openPopup(popUpCardSection));
 cardAddButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
 // ---------------------------------------------------------------
-// SPRINT 11
+// SPRINT 11 Y 12, LO CAMBIÉ UN POQUIS
 // ---------------------------------------------------------------
 
 const userInfo = new UserInfo({
@@ -104,39 +86,189 @@ const userInfo = new UserInfo({
 });
 
 const profileEditPopup = new PopupWithForm(".popup", (formData) => {
-  userInfo.setUserInfo(formData);
-  profileEditPopup.close();
+  const saveButton = profileEditPopup._form.querySelector(".form__save-button");
+  const originalButtonText = saveButton.textContent;
+  saveButton.textContent = "Guardando...";
+
+  api
+    .editUserInfo({ name: formData.name, about: formData.occupation })
+    .then((updatedUserData) => {
+      userInfo.setUserInfo({
+        name: updatedUserData.name,
+        occupation: updatedUserData.about,
+      });
+      profileEditPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      saveButton.textContent = originalButtonText;
+    });
 });
 profileEditPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popUpCard", (formData) => {
-  const newCard = new Card(formData, "#card-template", (name, link) => {
-    imagePreviewPopup.open(name, link);
-  });
-  const newCardElement = newCard.generateCard();
+  const saveButton = addCardPopup._form.querySelector(".form__save-button");
+  const originalButtonText = saveButton.textContent;
+  saveButton.textContent = "Guardando...";
 
-  cardListSection.addItem(newCardElement, true);
-  addCardPopup.close();
+  api
+    .addNewCard(formData)
+    .then((newCardData) => {
+      const card = new Card(
+        newCardData,
+        "#card-template",
+        currentUserId,
+        (name, link) => {
+          imagePreviewPopup.open(name, link);
+        },
+        (cardInstance) => {
+          cardToDelete = cardInstance;
+          confirmationPopup.open();
+        },
+        (cardInstance) => {
+          if (cardInstance.isLiked()) {
+            api
+              .removeLike(cardInstance._id)
+              .then((updatedCardData) => {
+                cardInstance.updateLikeStatus(updatedCardData.likes);
+              })
+              .catch((err) => console.log(err));
+          } else {
+            api
+              .addLike(cardInstance._id)
+              .then((updatedCardData) => {
+                cardInstance.updateLikeStatus(updatedCardData.likes);
+              })
+              .catch((err) => console.log(err));
+          }
+        }
+      );
+
+      const cardElement = card.generateCard();
+      cardListSection.addItem(cardElement, true);
+      addCardPopup.close();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      saveButton.textContent = originalButtonText;
+    });
 });
 addCardPopup.setEventListeners();
 
 const imagePreviewPopup = new PopupWithImage(".imagePopUp");
 imagePreviewPopup.setEventListeners();
 
-const cardListSection = new Section(
-  {
-    items: initialCards,
+// ---------------------------------------------------------------
+// RENDERIZADO DE TARJETAS (SPRINT 12)
+// ---------------------------------------------------------------
 
-    renderer: (item) => {
-      const card = new Card(item, "#card-template", (name, link) => {
-        imagePreviewPopup.open(name, link);
+const avatarEditPopup = new PopupWithForm(".popup_type_avatar", (formData) => {
+  const saveButton = avatarEditPopup._form.querySelector(".form__save-button");
+  const originalButtonText = saveButton.textContent;
+  saveButton.textContent = "Guardando...";
+
+  api
+    .updateUserAvatar(formData)
+    .then((updatedUserData) => {
+      profileAvatar.src = updatedUserData.avatar;
+      avatarEditPopup.close();
+    })
+    .catch((err) => {})
+    .finally(() => {
+      saveButton.textContent = originalButtonText;
+    });
+});
+avatarEditPopup.setEventListeners();
+
+profileAvatar.addEventListener("click", () => {
+  avatarEditPopup.open();
+});
+
+let cardIdToDelete = null;
+let cardElementToDelete = null;
+let cardToDelete = null;
+
+const confirmationPopup = new PopupWithConfirmation(
+  ".popup_type_confirm",
+  () => {
+    const saveButton =
+      confirmationPopup._form.querySelector(".form__save-button");
+    const originalButtonText = saveButton.textContent;
+    saveButton.textContent = "Guardando...";
+
+    api
+      .deleteCard(cardToDelete._id)
+      .then(() => {
+        cardToDelete.remove();
+        confirmationPopup.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        saveButton.textContent = originalButtonText;
+        cardToDelete = null;
       });
-
-      const cardElement = card.generateCard();
-      return cardElement;
-    },
-  },
-  ".gallery"
+  }
 );
+confirmationPopup.setEventListeners();
 
-cardListSection.renderItems();
+let currentUserId = null;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCardsData]) => {
+    currentUserId = userData._id;
+
+    userInfo.setUserInfo({
+      name: userData.name,
+      occupation: userData.about,
+    });
+
+    profileAvatar.src = userData.avatar;
+
+    const cardListSection = new Section(
+      {
+        items: initialCardsData,
+        renderer: (item) => {
+          const card = new Card(
+            item,
+            "#card-template",
+            currentUserId,
+            (name, link) => {
+              imagePreviewPopup.open(name, link);
+            },
+            (cardInstance) => {
+              cardToDelete = cardInstance;
+              confirmationPopup.open();
+            },
+            (cardInstance) => {
+              if (cardInstance.isLiked()) {
+                api
+                  .removeLike(cardInstance._id)
+                  .then((updatedCardData) => {
+                    cardInstance.updateLikeStatus(updatedCardData.likes);
+                  })
+                  .catch((err) => console.log(err));
+              } else {
+                api
+                  .addLike(cardInstance._id)
+                  .then((updatedCardData) => {
+                    cardInstance.updateLikeStatus(updatedCardData.likes);
+                  })
+                  .catch((err) => console.log(err));
+              }
+            }
+          );
+
+          const cardElement = card.generateCard();
+          return cardElement;
+        },
+      },
+      ".gallery"
+    );
+
+    cardListSection.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
