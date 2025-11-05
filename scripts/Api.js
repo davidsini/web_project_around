@@ -7,7 +7,7 @@ export default class Api {
   // este es para no repetir código, no sé si esté bien hacer esto
   _checkResponse(res) {
     if (res.ok) {
-      return res.json;
+      return res.json();
     } else {
       return Promise.reject(`Error: ${res.status}`);
     }
@@ -28,14 +28,14 @@ export default class Api {
   }
 
   editUserInfo(userData) {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
         about: userData.about,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
   addNewCard(cardData) {
