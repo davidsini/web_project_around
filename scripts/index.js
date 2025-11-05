@@ -41,6 +41,7 @@ const popUpCardSection = document.querySelector(".popUpCard");
 const editProfileForm = popupSection.querySelector(".form");
 const addCardForm = popUpCardSection.querySelector(".form");
 const profileAvatar = document.querySelector(".profile__picture");
+const profileAvatarButton = document.querySelector(".profile__avatar-wrapper");
 
 // ---------------------------------------------------------------
 //  HACER QUE ESAS CONSTANTES HAGAN ALGO
@@ -182,7 +183,7 @@ const avatarEditPopup = new PopupWithForm(".popup_type_avatar", (formData) => {
 });
 avatarEditPopup.setEventListeners();
 
-profileAvatar.addEventListener("click", () => {
+profileAvatarButton.addEventListener("click", () => {
   avatarEditPopup.open();
 });
 
