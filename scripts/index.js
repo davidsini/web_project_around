@@ -214,6 +214,7 @@ const confirmationPopup = new PopupWithConfirmation(
 confirmationPopup.setEventListeners();
 
 let currentUserId = null;
+let cardListSection = null;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCardsData]) => {
@@ -226,7 +227,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     profileAvatar.src = userData.avatar;
 
-    const cardListSection = new Section(
+    cardListSection = new Section(
       {
         items: initialCardsData,
         renderer: (item) => {
